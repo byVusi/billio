@@ -50,9 +50,14 @@ function _divide(a, b) {
   return a / b;
 }
 
-export const ARITHMETIC = Object.freeze({
+export const UTILITIES = Object.freeze({
+ARITHMETIC: Object.freeze({
 ADD: (a, b) => safeOp(a, b, _add),
 SUBTRACT: (a, b) => safeOp(a, b, _subtract),
 MULTIPLY: (a, b) => safeOp(a, b, _multiply),
 DIVIDE: (a, b) => safeOp(a, b, _divide),
+}),
+DISPLAY: Object.freeze({
+  FORMAT: formatForDisplay
+})
 });
