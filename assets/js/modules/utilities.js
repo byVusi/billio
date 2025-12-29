@@ -1,3 +1,31 @@
+const ARITHMETIC = Object.freeze({
+ADD: (a, b) => safeOp(a, b, _add),
+SUBTRACT: (a, b) => safeOp(a, b, _subtract),
+MULTIPLY: (a, b) => safeOp(a, b, _multiply),
+DIVIDE: (a, b) => safeOp(a, b, _divide),
+});
+
+function calculateTipFromRate(bill, rate) {
+  let rateAsDecimal = ARITHMETIC.DIVIDE(rate, 100);
+  return ARITHMETIC.MULTIPLY(bill, rateAsDecimal);
+}
+
+function calculateTipFromFinal(bill, final) {
+  if (final < bill) {
+    throw new RangeError("Final value cannot be less than the bill value.");
+  }
+
+  return ARITHMETIC.SUBTRACT(final, bill);
+}
+
+function calculateFinal(bill, tip) {
+ return ARITHMETIC.ADD(bill, tip)
+}
+
+function calculateSplit(final, divisor) {
+return ARITHMETIC.DIVIDE(final, divisor);
+}
+
 /**
  * Safely performs a mathematical operation on two values.
  * Converts inputs to numbers, validates them, and ensures the result is finite.
@@ -101,11 +129,13 @@ function _divide(a, b) {
  * Utility module containing arithmetic operations and display formatting.
  */
 export const UTILITIES = Object.freeze({
-ARITHMETIC: Object.freeze({
-ADD: (a, b) => safeOp(a, b, _add),
-SUBTRACT: (a, b) => safeOp(a, b, _subtract),
-MULTIPLY: (a, b) => safeOp(a, b, _multiply),
-DIVIDE: (a, b) => safeOp(a, b, _divide),
+CALCULATE: Object.freeze({
+TIP: Object.freeze({
+FROM_RATE: calculateTipFromRate,
+FROM_FINAL: calculateTipFromFinal
+}),
+FINAL: calculateFinal,
+SPLIT: calculateSplit
 }),
 DISPLAY: Object.freeze({
   FORMAT: formatForDisplay
