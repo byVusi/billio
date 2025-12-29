@@ -47,7 +47,7 @@ function _multiply(a, b) {
 }
 
 function _divide(a, b) {
-  return a / b;
+  return a / b; // Division by zero is handled in safeOp
 }
 
 export const UTILITIES = Object.freeze({
