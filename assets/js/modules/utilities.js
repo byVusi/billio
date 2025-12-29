@@ -1,3 +1,8 @@
+/**
+ * Safe arithmetic operations using internal validated math primitives.
+ * Each method returns a number if valid, or undefined if inputs are invalid
+ * or the result is not finite.
+ */
 const ARITHMETIC = Object.freeze({
 ADD: (a, b) => safeOp(a, b, _add),
 SUBTRACT: (a, b) => safeOp(a, b, _subtract),
@@ -5,11 +10,25 @@ MULTIPLY: (a, b) => safeOp(a, b, _multiply),
 DIVIDE: (a, b) => safeOp(a, b, _divide),
 });
 
+/**
+ * Calculates tip based on a bill amount and tip rate.
+ * @param {*} bill - The bill amount (number or string).
+ * @param {*} rate - Tip rate as a percentage (number or string).
+ * @returns {number|undefined} - Tip amount or undefined if inputs are invalid.
+ */
 function calculateTipFromRate(bill, rate) {
   let rateAsDecimal = ARITHMETIC.DIVIDE(rate, 100);
   return ARITHMETIC.MULTIPLY(bill, rateAsDecimal);
 }
 
+/**
+ * Calculates tip based on the bill and the final total amount.
+ * Throws an error if final is less than the bill.
+ * @param {*} bill - The original bill amount (number or string).
+ * @param {*} final - Final total amount (number or string).
+ * @returns {number|undefined} - Tip amount or undefined if inputs are invalid.
+ * @throws {RangeError} - If final < bill.
+ */
 function calculateTipFromFinal(bill, final) {
   if (final < bill) {
     throw new RangeError("Final value cannot be less than the bill value.");
@@ -18,10 +37,22 @@ function calculateTipFromFinal(bill, final) {
   return ARITHMETIC.SUBTRACT(final, bill);
 }
 
+/**
+ * Calculates the final total given a bill and a tip.
+ * @param {*} bill - The original bill amount (number or string).
+ * @param {*} tip - The tip amount (number or string).
+ * @returns {number|undefined} - Final total or undefined if inputs are invalid.
+ */
 function calculateFinal(bill, tip) {
  return ARITHMETIC.ADD(bill, tip)
 }
 
+/**
+ * Splits a total amount among a number of people.
+ * @param {*} final - Final total amount (number or string).
+ * @param {*} divisor - Number of people to split the bill (number or string).
+ * @returns {number|undefined} - Amount per person or undefined if inputs are invalid or division by zero.
+ */
 function calculateSplit(final, divisor) {
 return ARITHMETIC.DIVIDE(final, divisor);
 }
