@@ -126,7 +126,7 @@ function _divide(a, b) {
 }
 
 /**
- * Utility module containing arithmetic operations and display formatting.
+ * Utility module containing calculation logic and display formatting.
  */
 export const UTILITIES = Object.freeze({
 CALCULATE: Object.freeze({
