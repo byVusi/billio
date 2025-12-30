@@ -159,16 +159,20 @@ function _divide(a, b) {
 /**
  * Utility module containing calculation logic and display formatting.
  */
-export const UTILITIES = Object.freeze({
-CALCULATE: Object.freeze({
-TIP: Object.freeze({
-FROM_RATE: calculateTipFromRate,
-FROM_FINAL: calculateTipFromFinal
-}),
-FINAL: calculateFinal,
-SPLIT: calculateSplit
-}),
-DISPLAY: Object.freeze({
-  FORMAT: formatForDisplay
-})
-});
+export const UTILITIES = Object.freeze(
+  {
+    CALCULATE: Object.freeze({
+      TIP: Object.freeze(
+        {
+          FROM_RATE: calculateTipFromRate,
+          FROM_FINAL: calculateTipFromFinal
+        }),
+      FINAL: calculateFinal,
+      SPLIT: calculateSplit
+    }),
+  DISPLAY: Object.freeze(
+    {
+      FORMAT: formatForDisplay
+    })
+  }
+);
