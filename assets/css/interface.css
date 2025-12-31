@@ -13,6 +13,11 @@ main {
 	flex: 1;
 }
 
+[role="button"] {
+	cursor: pointer;
+	user-select: none;
+}
+
 #numpad {
 	display: grid;
 	grid-template-columns: auto auto auto;
@@ -24,7 +29,6 @@ main {
 	font-size: 1.5rem;
 	border-bottom: 1px solid var(--lightgray);
 	color: inherit;
-	cursor: pointer;
 }
 
 .numpad-key:nth-of-type(1) {
