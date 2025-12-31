@@ -59,7 +59,6 @@ main {
 	border-right: 1px solid var(--lightgray);
 }
 
-.numpad-key:hover,
 .numpad-key:active {
 	background-color: var(--lightgray);
 }
