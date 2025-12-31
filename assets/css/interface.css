@@ -59,6 +59,7 @@ main {
 	border-right: 1px solid var(--lightgray);
 }
 
+.numpad-key:focus,
 .numpad-key:active {
 	background-color: var(--lightgray);
 }
