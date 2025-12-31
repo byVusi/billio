@@ -63,3 +63,9 @@ main {
 .numpad-key:active {
 	background-color: var(--lightgray);
 }
+
+svg {
+	stroke-width: 1.5;
+	stroke: var(--black);
+	stroke-linecap: round;
+}
