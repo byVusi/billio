@@ -18,23 +18,32 @@ body {
 	color: var(--black);
 }
 
-.wrapper {
+.wrapper,
+nav,
+main {
 	display: flex;
+}
+
+.wrapper,
+main {
 	flex-direction: column;
+}
+
+.wrapper {
 	max-width: 800px;
 	height: 100vh;
 	margin: auto;
-	padding: 0 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
 	user-select: none;
 }
 
 nav {
-	padding: 2rem 0;
-	text-align: right;
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	justify-content: end;
 }
 
 main {
-	display: flex;
-	flex-direction: column;
 	flex: 1;
 }
