@@ -15,17 +15,18 @@ function dataValueClickHandler(e, container) {
 	});
 
 	clickedItem.classList.add("active");
-
-	console.log(clickedItem);
 }
 
-function counterClickHandler(e) {
+function counterClickHandler(e, splitByValue) {
 	const clickedItem = e.target.closest(".counter-control");
 	if (!clickedItem) return;
 
-	if (clickedItem?.id === "decrease") console.log("Decrease button clicked");
+	let count = splitByValue.textContent;
 
-	if (clickedItem?.id === "increase") console.log("Increase button clicked");
+	if (clickedItem?.id === "decrease" && Number(count) > 1)
+		splitByValue.textContent = --count;
+
+	if (clickedItem?.id === "increase") splitByValue.textContent = ++count;
 }
 
 function numpadKeyClickHandler(e) {
