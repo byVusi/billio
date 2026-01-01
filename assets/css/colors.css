@@ -30,7 +30,7 @@
 	--neutral-900: hsl(295, 9%, 2%);
 
 	--white: var(--neutral-100);
-	--lightgray: hsl(273, 11%, 92%);
+	--lightgray: hsl(273, 11%, 94%);
 	--gray: var(--neutral-500);
 	--black: var(--neutral-900);
 }
