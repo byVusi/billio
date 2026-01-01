@@ -1,3 +1,5 @@
+import { UTILITIES } from "./modules/utilities.js";
+
 function settingsButtonClickHandler(e) {
 	const clickedItem = e.target.closest("#settings-button");
 	if (!clickedItem) return;
@@ -33,11 +35,18 @@ function numpadKeyClickHandler(e) {
 	const clickedItem = e.target.closest(".numpad-key");
 	if (!clickedItem) return;
 
-	const number = clickedItem.textContent;
+	const value = clickedItem.textContent;
 
-	if (number.length > 1) return; // return when backspace button is clicked
+	if (value.length > 1) return; // return when backspace button is clicked
 
-	console.log(number);
+	// Which data value is active?
+	const data = document.querySelector(".data > .active");
+	if (!data) return;
+
+	const currentVal = data.textContent;
+
+	// Show change in display
+	UTILITIES.DISPLAY.SET(data, currentVal, value);
 }
 
 export const EVENT_HANDLERS = {
