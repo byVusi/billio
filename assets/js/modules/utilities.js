@@ -1,13 +1,27 @@
+function setDigits(data, currentVal, value) {
+	if (currentVal === "0") {
+		data.textContent = value === "." ? "0" : value;
+	} else {
+		data.textContent += !currentVal.includes(".")
+			? value
+			: value === "."
+			? ""
+			: currentVal.length - currentVal.indexOf(".") !== 3 //  no more then two decimal places
+			? value
+			: "";
+	}
+}
+
 /**
  * Safe arithmetic operations using internal validated math primitives.
  * Each method returns a number if valid, or undefined if inputs are invalid
  * or the result is not finite.
  */
 const ARITHMETIC = Object.freeze({
-ADD: (a, b) => safeOp(a, b, _add),
-SUBTRACT: (a, b) => safeOp(a, b, _subtract),
-MULTIPLY: (a, b) => safeOp(a, b, _multiply),
-DIVIDE: (a, b) => safeOp(a, b, _divide),
+	ADD: (a, b) => safeOp(a, b, _add),
+	SUBTRACT: (a, b) => safeOp(a, b, _subtract),
+	MULTIPLY: (a, b) => safeOp(a, b, _multiply),
+	DIVIDE: (a, b) => safeOp(a, b, _divide),
 });
 
 /**
@@ -17,8 +31,8 @@ DIVIDE: (a, b) => safeOp(a, b, _divide),
  * @returns {number|undefined} - Tip amount or undefined if inputs are invalid.
  */
 function calculateTipFromRate(bill, rate) {
-  let rateAsDecimal = ARITHMETIC.DIVIDE(rate, 100);
-  return ARITHMETIC.MULTIPLY(bill, rateAsDecimal);
+	let rateAsDecimal = ARITHMETIC.DIVIDE(rate, 100);
+	return ARITHMETIC.MULTIPLY(bill, rateAsDecimal);
 }
 
 /**
@@ -30,11 +44,11 @@ function calculateTipFromRate(bill, rate) {
  * @throws {RangeError} - If final < bill.
  */
 function calculateTipFromFinal(bill, final) {
-  if (final < bill) {
-    throw new RangeError("Final value cannot be less than the bill value.");
-  }
+	if (final < bill) {
+		throw new RangeError("Final value cannot be less than the bill value.");
+	}
 
-  return ARITHMETIC.SUBTRACT(final, bill);
+	return ARITHMETIC.SUBTRACT(final, bill);
 }
 
 /**
@@ -44,7 +58,7 @@ function calculateTipFromFinal(bill, final) {
  * @returns {number|undefined} - Final total or undefined if inputs are invalid.
  */
 function calculateFinal(bill, tip) {
- return ARITHMETIC.ADD(bill, tip)
+	return ARITHMETIC.ADD(bill, tip);
 }
 
 /**
@@ -54,7 +68,7 @@ function calculateFinal(bill, tip) {
  * @returns {number|undefined} - Amount per person or undefined if inputs are invalid or division by zero.
  */
 function calculateSplit(final, divisor) {
-return ARITHMETIC.DIVIDE(final, divisor);
+	return ARITHMETIC.DIVIDE(final, divisor);
 }
 
 /**
@@ -67,12 +81,13 @@ return ARITHMETIC.DIVIDE(final, divisor);
  * @returns {number|undefined} - Result of operation, or undefined if inputs are invalid or result is not finite.
  */
 function safeOp(a, b, op) {
-  const num1 = toNumber(a), num2 = toNumber(b);
-  if (num1 === undefined || num2 === undefined) return undefined;
-  const result = op(num1, num2);
-  if (!Number.isFinite(result)) return undefined;
-  return result;
-  }
+	const num1 = toNumber(a),
+		num2 = toNumber(b);
+	if (num1 === undefined || num2 === undefined) return undefined;
+	const result = op(num1, num2);
+	if (!Number.isFinite(result)) return undefined;
+	return result;
+}
 
 /**
  * Converts a value to a number safely.
@@ -81,13 +96,13 @@ function safeOp(a, b, op) {
  * @returns {number|undefined} - Converted number or undefined if conversion fails.
  */
 function toNumber(value) {
-  if (typeof value === "string") {
-    if (value.trim() === "") return undefined;
-    value = value.trim();
-  }
+	if (typeof value === "string") {
+		if (value.trim() === "") return undefined;
+		value = value.trim();
+	}
 
-  const num = Number(value);
-  return Number.isNaN(num) ? undefined : num;
+	const num = Number(value);
+	return Number.isNaN(num) ? undefined : num;
 }
 
 /**
@@ -99,17 +114,17 @@ function toNumber(value) {
  * @throws {RangeError} - If decimalPlaces is not a non-negative integer.
  */
 function formatForDisplay(value, decimalPlaces = 2) {
-  if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {
-    throw new RangeError("decimalPlaces must be a non-negative integer");
-  }
+	if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {
+		throw new RangeError("decimalPlaces must be a non-negative integer");
+	}
 
-  const num = toNumber(value);
+	const num = toNumber(value);
 
-  if (num === undefined) {
-    return undefined;
-  }
+	if (num === undefined) {
+		return undefined;
+	}
 
-  return num.toFixed(decimalPlaces); // string output for display
+	return num.toFixed(decimalPlaces); // string output for display
 }
 
 // Internal math primitives.
@@ -123,7 +138,7 @@ function formatForDisplay(value, decimalPlaces = 2) {
  * @returns {number}
  */
 function _add(a, b) {
-  return a + b;
+	return a + b;
 }
 
 /**
@@ -133,7 +148,7 @@ function _add(a, b) {
  * @returns {number}
  */
 function _subtract(a, b) {
-  return a - b;
+	return a - b;
 }
 
 /**
@@ -143,7 +158,7 @@ function _subtract(a, b) {
  * @returns {number}
  */
 function _multiply(a, b) {
-  return a * b;
+	return a * b;
 }
 
 /**
@@ -153,26 +168,23 @@ function _multiply(a, b) {
  * @returns {number}
  */
 function _divide(a, b) {
-  return a / b; // Division by zero is handled in safeOp
+	return a / b; // Division by zero is handled in safeOp
 }
 
 /**
  * Utility module containing calculation logic and display formatting.
  */
-export const UTILITIES = Object.freeze(
-  {
-    CALCULATE: Object.freeze({
-      TIP: Object.freeze(
-        {
-          FROM_RATE: calculateTipFromRate,
-          FROM_FINAL: calculateTipFromFinal
-        }),
-      FINAL: calculateFinal,
-      SPLIT: calculateSplit
-    }),
-  DISPLAY: Object.freeze(
-    {
-      FORMAT: formatForDisplay
-    })
-  }
-);
+export const UTILITIES = Object.freeze({
+	CALCULATE: Object.freeze({
+		TIP: Object.freeze({
+			FROM_RATE: calculateTipFromRate,
+			FROM_FINAL: calculateTipFromFinal,
+		}),
+		FINAL: calculateFinal,
+		SPLIT: calculateSplit,
+	}),
+	DISPLAY: Object.freeze({
+		FORMAT: formatForDisplay,
+		SET: setDigits,
+	}),
+});
