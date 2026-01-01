@@ -1,6 +1,7 @@
 h5 {
 	margin: 0 0 0.25rem;
-	font-weight: 400;
+	font-size: 0.8rem;
+	font-weight: 500;
 	color: var(--gray);
 }
 
@@ -12,8 +13,14 @@ p.value {
 
 .data:nth-of-type(even),
 #split-container p.value {
-	color: var(--primary);
 	text-align: right;
+}
+
+.data:nth-of-type(even),
+.data:nth-of-type(even) h5,
+#split-container p.value,
+#split-container h5 {
+	color: var(--primary);
 }
 
 [role="button"] {
@@ -35,6 +42,25 @@ p.value {
 	background-color: var(--primary-tint-900);
 }
 
+#counter h5 + div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.5rem 0;
+}
+
+.counter-control {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background-color: var(--primary-tint-800);
+}
+
+.counter-control svg {
+	stroke: var(--primary);
+}
+
 #numpad {
 	display: grid;
 	grid-template-columns: auto auto auto;
@@ -44,7 +70,8 @@ p.value {
 }
 
 .numpad-key {
-	padding: 1rem;
+	display: grid;
+	place-items: center;
 	font-size: 1.5rem;
 	border-bottom: 1px solid var(--lightgray);
 	color: inherit;
