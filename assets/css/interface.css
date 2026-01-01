@@ -11,13 +11,19 @@ p.value {
 	font-weight: 700;
 }
 
+.data {
+	color: var(--neutral-300);
+}
+
+.data .active {
+	color: var(--primary);
+}
+
 .data:nth-of-type(even),
 #split-container p.value {
 	text-align: right;
 }
 
-.data:nth-of-type(even),
-.data:nth-of-type(even) h5,
 #split-container p.value,
 #split-container h5,
 #split-by-value {
