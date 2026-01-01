@@ -4,7 +4,6 @@ const BUTTONS = EVENT_HANDLERS.CLICK.BUTTONS;
 const NAV = document.querySelector("nav");
 const DATA_CONTAINER = document.getElementById("data-container");
 const SPLIT_CONTAINER = document.getElementById("split-container");
-const SPLIT_BY_VALUE = document.getElementById("split-by-value");
 const NUMPAD = document.getElementById("numpad");
 
 // Add initial event listeners to clickable items
@@ -13,7 +12,7 @@ NAV.addEventListener("click", (e) => {
 });
 
 SPLIT_CONTAINER.addEventListener("click", (e) => {
-	BUTTONS.COUNTER(e, SPLIT_BY_VALUE);
+	BUTTONS.COUNTER(e);
 });
 
 NUMPAD.addEventListener("click", (e) => {
