@@ -31,7 +31,7 @@ p.value {
 #data-container {
 	display: grid;
 	grid-template-columns: auto auto;
-	flex: 1;
+	margin: 1.5rem 0;
 }
 
 #split-container {
@@ -56,6 +56,11 @@ p.value {
 	height: 24px;
 	border-radius: 50%;
 	background-color: var(--primary-tint-800);
+	transition: background-color 0.2s ease-in-out;
+}
+
+.counter-control:active {
+	background-color: var(--primary-tint-700);
 }
 
 .counter-control svg {
@@ -76,6 +81,11 @@ p.value {
 	font-size: 1.5rem;
 	border-bottom: 1px solid var(--lightgray);
 	color: inherit;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.numpad-key:active {
+	background-color: var(--lightgray);
 }
 
 .numpad-key:nth-of-type(1) {
