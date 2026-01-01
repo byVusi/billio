@@ -19,7 +19,8 @@ p.value {
 .data:nth-of-type(even),
 .data:nth-of-type(even) h5,
 #split-container p.value,
-#split-container h5 {
+#split-container h5,
+#split-by-value {
 	color: var(--primary);
 }
 
