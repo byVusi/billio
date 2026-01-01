@@ -25,7 +25,6 @@ p.value {
 
 [role="button"] {
 	cursor: pointer;
-	user-select: none;
 }
 
 #data-container {
