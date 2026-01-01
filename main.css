@@ -25,6 +25,7 @@ body {
 	height: 100vh;
 	margin: auto;
 	padding: 0 1rem;
+	user-select: none;
 }
 
 nav {
