@@ -31,6 +31,7 @@ p.value {
 #data-container {
 	display: grid;
 	grid-template-columns: auto auto;
+	flex: 1;
 }
 
 #split-container {
