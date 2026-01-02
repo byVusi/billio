@@ -12,10 +12,10 @@ function renderModal() {
 		EVENT_HANDLERS.CLICK.MODAL.CLOSE(e);
 	});
 
-	MODAL.removeEventListener("click", EVENT_HANDLERS.CLICK.MODAL.SAVE);
-	MODAL.addEventListener("click", async (e) => {
-		EVENT_HANDLERS.CLICK.MODAL.SAVE(e);
-	});
+	// MODAL.removeEventListener("click", EVENT_HANDLERS.CLICK.MODAL.SAVE);
+	// MODAL.addEventListener("click", async (e) => {
+	// 	EVENT_HANDLERS.CLICK.MODAL.SAVE(e);
+	// });
 }
 
 function renderSettingsButton() {
