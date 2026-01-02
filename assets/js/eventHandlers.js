@@ -23,12 +23,14 @@ function dataValueClickHandler(e, container) {
 	});
 	clickedItem.classList.add("active");
 
-	if (clickedItem.parentElement.classList.contains("total")) {
-		clearData(); // resets the tip rate, tip amount and total amount values
-	}
+	const classList = clickedItem.parentElement.classList;
 
-	if (clickedItem.parentElement.classList.contains("tip")) {
-		clearData();
+	if (
+		classList.contains("total") ||
+		classList.contains("tip") ||
+		classList.contains("rate")
+	) {
+		clearData(); // resets the tip rate, tip amount and total amount values
 	}
 }
 
