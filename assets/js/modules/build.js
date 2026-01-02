@@ -114,14 +114,6 @@ function createElement(className = "", tagName = "div") {
 	return element;
 }
 
-function createButton(className = "", type = "button", label = "Button") {
-	const button = createElement(className, "button");
-	button.type = type;
-	button.setAttribute("aria-label", label);
-
-	return button;
-}
-
 export const BUILDER = {
 	MODAL: buildModal,
 	SETTINGS_BUTTON: buildSettingsButton,
