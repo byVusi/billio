@@ -15,7 +15,6 @@
 	width: calc(100% - 2rem);
 	max-width: 600px;
 	height: fit-content;
-	background-color: white;
 	margin: auto;
 	border-radius: 1rem;
 }
@@ -57,22 +56,70 @@
 }
 
 .save-btn {
-	background-color: var(--primary);
-	color: white;
 	padding: 0.5rem 1rem;
 	border-radius: 1rem;
 }
 
-.save-btn:hover {
-	background-color: var(--primary-600);
-}
-
 .save-btn:focus {
-	outline: 2px solid var(--primary-300);
+	outline-width: 2px;
+	outline-style: solid;
 	outline-offset: 3px;
 }
 
 .save-btn:active {
-	background-color: var(--primary-700);
 	transform: scale(0.99);
+}
+
+[data-theme="light"] {
+	.modal-dialog {
+		background-color: var(--white);
+	}
+
+	h5.modal-title {
+		color: var(--text);
+	}
+
+	.save-btn {
+		background-color: var(--primary);
+		color: var(--white);
+	}
+
+	.save-btn:hover {
+		background-color: var(--primary-shade-100);
+	}
+
+	.save-btn:focus {
+		outline-color: var(--primary-tint-200);
+	}
+
+	.save-btn:active {
+		background-color: var(--primary-shade-200);
+	}
+}
+
+[data-theme="dark"] {
+	.modal-dialog {
+		background-color: var(--surface);
+	}
+
+	h5.modal-title {
+		color: var(--text);
+	}
+
+	.save-btn {
+		background-color: var(--primary);
+		color: var(--white);
+	}
+
+	.save-btn:hover {
+		background-color: var(--primary-shade-100);
+	}
+
+	.save-btn:focus {
+		outline-color: var(--primary-tint-200);
+	}
+
+	.save-btn:active {
+		background-color: var(--primary-shade-200);
+	}
 }
