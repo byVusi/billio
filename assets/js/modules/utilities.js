@@ -24,6 +24,11 @@ const ARITHMETIC = Object.freeze({
 	DIVIDE: (a, b) => safeOp(a, b, _divide),
 });
 
+function calculateRateFromTip(bill, tip) {
+	const rateAsDecimal = ARITHMETIC.DIVIDE(tip, bill);
+	return ARITHMETIC.MULTIPLY(rateAsDecimal, 100);
+}
+
 /**
  * Calculates tip based on a bill amount and tip rate.
  * @param {*} bill - The bill amount (number or string).
@@ -118,7 +123,7 @@ function formatForDisplay(value, decimalPlaces = 2) {
 		throw new RangeError("decimalPlaces must be a non-negative integer");
 	}
 
-	const num = toNumber(value);
+	let num = toNumber(value);
 
 	if (num === undefined) {
 		return undefined;
@@ -176,6 +181,9 @@ function _divide(a, b) {
  */
 export const UTILITIES = Object.freeze({
 	CALCULATE: Object.freeze({
+		RATE: Object.freeze({
+			FROM_TIP: calculateRateFromTip,
+		}),
 		TIP: Object.freeze({
 			FROM_RATE: calculateTipFromRate,
 			FROM_FINAL: calculateTipFromFinal,
