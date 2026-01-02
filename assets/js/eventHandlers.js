@@ -1,4 +1,5 @@
 import { UTILITIES } from "./modules/utilities.js";
+import { RENDERER } from "./modules/render.js";
 
 const bill = document.querySelector(".bill .value");
 const tip = document.querySelector(".tip .value");
@@ -11,7 +12,7 @@ function settingsButtonClickHandler(e) {
 	const clickedItem = e.target.closest("#settings-button");
 	if (!clickedItem) return;
 
-	console.log("Settings button clicked");
+	RENDERER.MODAL();
 }
 
 function dataValueClickHandler(e, container) {
@@ -149,5 +150,6 @@ export const EVENT_HANDLERS = {
 			NUMPAD_KEYS: numpadKeyClickHandler,
 		},
 		DATA: dataValueClickHandler,
+		MODAL: () => console.log("Modal close"),
 	},
 };
