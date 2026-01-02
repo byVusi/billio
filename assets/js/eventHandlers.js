@@ -25,19 +25,23 @@ function dataValueClickHandler(e, container) {
 
 	const classList = clickedItem.parentElement.classList;
 
-	if (
-		classList.contains("total") ||
-		classList.contains("tip") ||
-		classList.contains("rate")
-	) {
-		clearData(); // resets the tip rate, tip amount and total amount values
+	if (classList.contains("tip")) {
+		tip.textContent = "0";
+		rate.textContent = "0";
+		total.textContent = "0.00";
 	}
-}
 
-function clearData() {
-	rate.textContent = "0";
-	tip.textContent = "0";
-	total.textContent = "0";
+	if (classList.contains("total")) {
+		tip.textContent = "0.00";
+		rate.textContent = "0";
+		total.textContent = "0";
+	}
+
+	if (classList.contains("rate")) {
+		rate.textContent = "0";
+		tip.textContent = "0.00";
+		total.textContent = "0.00";
+	}
 }
 
 function counterClickHandler(e) {
@@ -65,20 +69,33 @@ function numpadKeyClickHandler(e) {
 
 	const value = clickedItem.textContent;
 
-	if (value.length > 1) return; // return when backspace button is clicked
-
 	// Which data value is active?
 	const data = document.querySelector(".data > .active");
 	if (!data) return;
+
+	const list = Array.from(data.parentElement.classList);
+
+	if (clickedItem.id === "backspace") {
+		let numArray = data.textContent.split("");
+		numArray.splice(-1);
+		data.textContent = numArray.join("");
+
+		if (data.textContent === "") {
+			data.textContent = "0";
+		}
+		updateDisplayedNumbers(data, list);
+		return;
+	}
 
 	const currentVal = data.textContent;
 
 	// Show change in display
 	UTILITIES.DISPLAY.SET(data, currentVal, value);
+	updateDisplayedNumbers(data, list);
+}
 
-	const list = Array.from(data.parentElement.classList);
-
-	let tipVal, totalVal;
+function updateDisplayedNumbers(data, list) {
+	let rateVal, tipVal, totalVal;
 	if (list.includes("bill")) {
 		tipVal = UTILITIES.CALCULATE.TIP.FROM_RATE(
 			data.textContent,
@@ -89,6 +106,11 @@ function numpadKeyClickHandler(e) {
 		total.textContent = UTILITIES.DISPLAY.FORMAT(totalVal);
 	}
 	if (list.includes("tip")) {
+		rateVal = UTILITIES.CALCULATE.RATE.FROM_TIP(
+			bill.textContent,
+			data.textContent
+		);
+		rate.textContent = UTILITIES.DISPLAY.FORMAT(rateVal);
 		totalVal = UTILITIES.CALCULATE.FINAL(
 			bill.textContent,
 			data.textContent
