@@ -2,21 +2,28 @@ h5 {
 	margin: 0 0 0.25rem;
 	font-size: 0.8rem;
 	font-weight: 500;
-	color: var(--gray);
+	color: var(--muted);
+}
+
+p.value:not(p.value:nth-of-type(3), p.value:nth-of-type(4), .split > p.value) {
+	margin: 0 0 3rem;
+}
+
+.split > p.value {
+	margin: 0;
 }
 
 p.value {
-	margin: 0 0 1rem;
 	font-size: 2rem;
 	font-weight: 700;
 }
 
 .data {
-	color: var(--neutral-300);
+	color: var(--muted);
 }
 
 .data .active {
-	color: var(--primary);
+	color: var(--active);
 }
 
 .data:nth-of-type(even),
@@ -27,7 +34,7 @@ p.value {
 #split-container p.value,
 #split-container h5,
 #split-by-value {
-	color: var(--primary);
+	color: var(--active);
 }
 
 [role="button"] {
@@ -44,9 +51,9 @@ p.value {
 	display: flex;
 	justify-content: space-between;
 	padding: 1rem;
-	margin: 1.5rem 0;
+	margin: 0 0 1.5rem;
 	border-radius: 1rem;
-	background-color: var(--primary-tint-900);
+	background-color: var(--foreground);
 }
 
 #counter h5 + div {
@@ -61,16 +68,16 @@ p.value {
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background-color: var(--primary-tint-800);
+	background-color: var(--button);
 	transition: background-color 0.2s ease-in-out;
 }
 
 .counter-control:active {
-	background-color: var(--primary-tint-700);
+	background-color: var(--button-active);
 }
 
 .counter-control svg {
-	stroke: var(--primary);
+	stroke: var(--active);
 }
 
 #numpad {
@@ -85,54 +92,51 @@ p.value {
 	display: grid;
 	place-items: center;
 	font-size: 1.5rem;
-	border-bottom: 1px solid var(--lightgray);
+	border-bottom: 1px solid var(--border);
+	background-color: var(--surface);
 	color: inherit;
 	transition: background-color 0.2s ease-in-out;
 }
 
-.numpad-key:active {
-	background-color: var(--lightgray);
-}
-
 .numpad-key:nth-of-type(1) {
-	border-top: 1px solid var(--lightgray);
+	border-top: 1px solid var(--border);
 }
 
 .numpad-key:nth-of-type(2) {
-	border-top: 1px solid var(--lightgray);
+	border-top: 1px solid var(--border);
 }
 
 .numpad-key:nth-of-type(3) {
-	border-top: 1px solid var(--lightgray);
+	border-top: 1px solid var(--border);
 }
 
 .numpad-key:nth-of-type(2) {
-	border-left: 1px solid var(--lightgray);
-	border-right: 1px solid var(--lightgray);
+	border-left: 1px solid var(--border);
+	border-right: 1px solid var(--border);
 }
 
 .numpad-key:nth-of-type(5) {
-	border-left: 1px solid var(--lightgray);
-	border-right: 1px solid var(--lightgray);
+	border-left: 1px solid var(--border);
+	border-right: 1px solid var(--border);
 }
 
 .numpad-key:nth-of-type(8) {
-	border-left: 1px solid var(--lightgray);
-	border-right: 1px solid var(--lightgray);
+	border-left: 1px solid var(--border);
+	border-right: 1px solid var(--border);
 }
 
 .numpad-key:nth-of-type(11) {
-	border-left: 1px solid var(--lightgray);
-	border-right: 1px solid var(--lightgray);
+	border-left: 1px solid var(--border);
+	border-right: 1px solid var(--border);
 }
 
 .numpad-key:focus,
 .numpad-key:active {
-	background-color: var(--lightgray);
+	background-color: var(--surface-active);
 }
 
 svg {
 	stroke-width: 1.5;
-	stroke: var(--black);
+	stroke: var(--text);
 	stroke-linecap: round;
 }
