@@ -142,6 +142,13 @@ function updateDisplayedNumbers(data, list) {
 	split.textContent = UTILITIES.DISPLAY.FORMAT(splitVal);
 }
 
+function modalCloseButtonClickHandler(e) {
+	const clickedItem = e.target.closest(".btn-close");
+	if (!clickedItem) return;
+
+	document.querySelector(".modal")?.remove();
+}
+
 export const EVENT_HANDLERS = {
 	CLICK: {
 		BUTTONS: {
@@ -150,6 +157,8 @@ export const EVENT_HANDLERS = {
 			NUMPAD_KEYS: numpadKeyClickHandler,
 		},
 		DATA: dataValueClickHandler,
-		MODAL: () => console.log("Modal close"),
+		MODAL: {
+			CLOSE: modalCloseButtonClickHandler,
+		},
 	},
 };
