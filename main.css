@@ -1,5 +1,6 @@
 @import url(assets/css/colors.css);
 @import url(assets/css/interface.css);
+@import url(assets/css/components/modal.css);
 
 @font-face {
 	font-family: Nunito;
