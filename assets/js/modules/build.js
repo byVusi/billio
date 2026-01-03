@@ -38,12 +38,50 @@ function buildModalContent() {
 	const fragment = document.createDocumentFragment();
 
 	const themeSection = createElement("settings-section");
+	const paletteSection = createElement("settings-section");
 
 	const themeSectionHeader = document.createElement("h6");
 	themeSectionHeader.textContent = "Theme";
+	const themeChoices = buildInput([
+		{ type: "radio", id: "light", name: "theme", value: "light" },
+		{ type: "radio", id: "dark", name: "theme", value: "dark" },
+		{ type: "radio", id: "auto", name: "theme", value: "auto" },
+	]);
 
-	themeSection.append(themeSectionHeader);
-	fragment.append(themeSection);
+	const paletteSectionHeader = document.createElement("h6");
+	paletteSectionHeader.textContent = "Palette";
+	const paletteChoices = buildInput([
+		{ type: "radio", id: "aether", name: "palette", value: "aether" },
+		{ type: "radio", id: "blush", name: "palette", value: "blush" },
+		{ type: "radio", id: "ember", name: "palette", value: "ember" },
+		{ type: "radio", id: "verdant", name: "palette", value: "verdant" },
+		{ type: "radio", id: "eclipse", name: "palette", value: "eclipse" },
+		{ type: "radio", id: "pulse", name: "palette", value: "pulse" },
+	]);
+
+	themeSection.append(themeSectionHeader, themeChoices);
+	paletteSection.append(paletteSectionHeader, paletteChoices);
+	fragment.append(themeSection, paletteSection);
+
+	return fragment;
+}
+
+function buildInput(options = []) {
+	const fragment = document.createDocumentFragment();
+	for (const option of options) {
+		const input = createElement(`modal-${option.type}`, "input");
+		input.type = option.type;
+		input.id = option.id;
+		input.name = option.name;
+		input.value = option.name;
+		const label = createElement("modal-label", "label");
+		label.setAttribute("for", input.id);
+		label.textContent =
+			option.value.trim().charAt(0).toUpperCase() +
+			option.value.trim().slice(1).toLowerCase();
+		label.prepend(input);
+		fragment.append(label);
+	}
 
 	return fragment;
 }
