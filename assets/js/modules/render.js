@@ -1,8 +1,8 @@
 import { BUILDER } from "./build.js";
 import { EVENT_HANDLERS } from "./eventHandlers.js";
 
-function renderModal() {
-	document.body.append(BUILDER.MODAL());
+function renderModal(theme, theme_palette) {
+	document.body.append(BUILDER.MODAL(theme, theme_palette));
 	const MODAL = document.querySelector(".modal");
 
 	if (!MODAL) return;
@@ -12,10 +12,18 @@ function renderModal() {
 		EVENT_HANDLERS.CLICK.MODAL.CLOSE(e);
 	});
 
-	// MODAL.removeEventListener("click", EVENT_HANDLERS.CLICK.MODAL.SAVE);
-	// MODAL.addEventListener("click", async (e) => {
-	// 	EVENT_HANDLERS.CLICK.MODAL.SAVE(e);
-	// });
+	const MODAL_BODY = MODAL.querySelector(".modal-body");
+	if (!MODAL_BODY) return;
+
+	MODAL_BODY.removeEventListener("click", EVENT_HANDLERS.CLICK.MODAL.THEME);
+	MODAL_BODY.addEventListener("click", (e) => {
+		EVENT_HANDLERS.CLICK.MODAL.THEME(e);
+	});
+
+	MODAL_BODY.removeEventListener("click", EVENT_HANDLERS.CLICK.MODAL.PALETTE);
+	MODAL_BODY.addEventListener("click", (e) => {
+		EVENT_HANDLERS.CLICK.MODAL.PALETTE(e);
+	});
 }
 
 function renderSettingsButton() {
