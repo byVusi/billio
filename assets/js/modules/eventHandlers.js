@@ -1,5 +1,7 @@
 import { UTILITIES } from "./utilities.js";
 import { RENDERER } from "./render.js";
+import { STORAGE } from "./storage.js";
+import { setTheme } from "../theme.js";
 
 const bill = document.querySelector(".bill .value");
 const tip = document.querySelector(".tip .value");
@@ -8,11 +10,11 @@ const total = document.querySelector(".total .value");
 const split = document.querySelector(".split .value");
 const splitByValue = document.getElementById("split-by-value");
 
-function settingsButtonClickHandler(e) {
+function settingsButtonClickHandler(e, theme, theme_palette) {
 	const clickedItem = e.target.closest("#settings-button");
 	if (!clickedItem) return;
 
-	RENDERER.MODAL();
+	RENDERER.MODAL(theme, theme_palette);
 }
 
 function dataValueClickHandler(e, container) {
@@ -149,6 +151,32 @@ function modalCloseButtonClickHandler(e) {
 	document.querySelector(".modal")?.remove();
 }
 
+async function themeClickHandler(e) {
+	const clickedItem = e.target.closest("[name='theme']");
+	if (!clickedItem) return;
+
+	const data = await STORAGE.FETCH();
+
+	data.theme = clickedItem.value;
+
+	STORAGE.SAVE(data);
+
+	setTheme();
+}
+
+async function paletteClickHandler(e) {
+	const clickedItem = e.target.closest("[name='palette']");
+	if (!clickedItem) return;
+
+	const data = await STORAGE.FETCH();
+
+	data.theme_palette = clickedItem.value;
+
+	STORAGE.SAVE(data);
+
+	setTheme();
+}
+
 export const EVENT_HANDLERS = {
 	CLICK: {
 		BUTTONS: {
@@ -159,6 +187,8 @@ export const EVENT_HANDLERS = {
 		DATA: dataValueClickHandler,
 		MODAL: {
 			CLOSE: modalCloseButtonClickHandler,
+			THEME: themeClickHandler,
+			PALETTE: paletteClickHandler,
 		},
 	},
 };
