@@ -1,5 +1,5 @@
 import { BUILDER } from "./build.js";
-import { EVENT_HANDLERS } from "../eventHandlers.js";
+import { EVENT_HANDLERS } from "./eventHandlers.js";
 
 function renderModal() {
 	document.body.append(BUILDER.MODAL());
