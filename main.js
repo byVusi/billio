@@ -1,4 +1,4 @@
-import { EVENT_HANDLERS } from "./assets/js/eventHandlers.js";
+import { EVENT_HANDLERS } from "./assets/js/modules/eventHandlers.js";
 
 const BUTTONS = EVENT_HANDLERS.CLICK.BUTTONS;
 const NAV = document.querySelector("nav");
