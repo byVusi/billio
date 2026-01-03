@@ -1,4 +1,4 @@
-function buildModal(title = "Settings") {
+function buildModal(theme, theme_palette, title = "Settings") {
 	const modal = createElement("modal");
 	const modal_dialog = createElement("modal-dialog");
 	const modal_content = createElement("modal-content");
@@ -16,7 +16,7 @@ function buildModal(title = "Settings") {
 	closeButton.append(getCloseIcon());
 
 	modal_header.append(modal_title, closeButton);
-	modal_body.append(buildModalContent());
+	modal_body.append(buildModalContent(theme, theme_palette));
 
 	modal_content.append(modal_header, modal_body);
 	modal_dialog.append(modal_content);
@@ -34,7 +34,7 @@ function buildSettingsButton() {
 	return button;
 }
 
-function buildModalContent() {
+function buildModalContent(theme, theme_palette) {
 	const fragment = document.createDocumentFragment();
 
 	const themeSection = createElement("settings-section");
@@ -42,22 +42,28 @@ function buildModalContent() {
 
 	const themeSectionHeader = document.createElement("h6");
 	themeSectionHeader.textContent = "Theme";
-	const themeChoices = buildInput([
-		{ type: "radio", id: "light", name: "theme", value: "light" },
-		{ type: "radio", id: "dark", name: "theme", value: "dark" },
-		{ type: "radio", id: "auto", name: "theme", value: "auto" },
-	]);
+	const themeChoices = buildInput(
+		[
+			{ type: "radio", id: "light", name: "theme", value: "light" },
+			{ type: "radio", id: "dark", name: "theme", value: "dark" },
+			{ type: "radio", id: "auto", name: "theme", value: "auto" },
+		],
+		theme
+	);
 
 	const paletteSectionHeader = document.createElement("h6");
 	paletteSectionHeader.textContent = "Palette";
-	const paletteChoices = buildInput([
-		{ type: "radio", id: "aether", name: "palette", value: "aether" },
-		{ type: "radio", id: "blush", name: "palette", value: "blush" },
-		{ type: "radio", id: "ember", name: "palette", value: "ember" },
-		{ type: "radio", id: "verdant", name: "palette", value: "verdant" },
-		{ type: "radio", id: "eclipse", name: "palette", value: "eclipse" },
-		{ type: "radio", id: "pulse", name: "palette", value: "pulse" },
-	]);
+	const paletteChoices = buildInput(
+		[
+			{ type: "radio", id: "aether", name: "palette", value: "aether" },
+			{ type: "radio", id: "blush", name: "palette", value: "blush" },
+			{ type: "radio", id: "ember", name: "palette", value: "ember" },
+			{ type: "radio", id: "verdant", name: "palette", value: "verdant" },
+			{ type: "radio", id: "eclipse", name: "palette", value: "eclipse" },
+			{ type: "radio", id: "pulse", name: "palette", value: "pulse" },
+		],
+		theme_palette
+	);
 
 	themeSection.append(themeSectionHeader, themeChoices);
 	paletteSection.append(paletteSectionHeader, paletteChoices);
@@ -66,14 +72,17 @@ function buildModalContent() {
 	return fragment;
 }
 
-function buildInput(options = []) {
+function buildInput(options = [], storedValue) {
 	const fragment = document.createDocumentFragment();
 	for (const option of options) {
 		const input = createElement(`modal-${option.type}`, "input");
 		input.type = option.type;
 		input.id = option.id;
 		input.name = option.name;
-		input.value = option.name;
+		input.value = option.value;
+
+		if (input.value === storedValue) input.setAttribute("checked", true);
+
 		const label = createElement("modal-label", "label");
 		label.setAttribute("for", input.id);
 		label.textContent =
@@ -82,7 +91,6 @@ function buildInput(options = []) {
 		label.prepend(input);
 		fragment.append(label);
 	}
-
 	return fragment;
 }
 
