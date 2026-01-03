@@ -49,27 +49,27 @@
 	--border: var(--lightgray);
 }
 
-[data-theme-palette="default"] {
+[data-theme-palette="aether"] {
 	--primary-hue: 239;
 }
 
-[data-theme-palette="rosey"] {
+[data-theme-palette="blush"] {
 	--primary-hue: 329;
 }
 
-[data-theme-palette="fresh"] {
+[data-theme-palette="verdant"] {
 	--primary-hue: 149;
 }
 
-[data-theme-palette="passion"] {
+[data-theme-palette="ember"] {
 	--primary-hue: 359;
 }
 
-[data-theme-palette="violet"] {
+[data-theme-palette="eclipse"] {
 	--primary-hue: 269;
 }
 
-[data-theme-palette="dusty"] {
+[data-theme-palette="pulse"] {
 	--primary-hue: 29;
 }
 
