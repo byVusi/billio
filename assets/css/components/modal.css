@@ -26,20 +26,17 @@
 
 .modal-content {
 	flex-direction: column;
-}
-
-.modal-content {
 	padding: 1rem;
 }
 
 .modal-header {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
-.modal-title {
+h5.modal-title {
 	font-size: 1.25rem;
-	margin: 0;
 }
 
 .moday-body,
@@ -59,6 +56,10 @@
 	margin-bottom: 1rem;
 }
 
+.btn-close {
+	padding: 0.5rem 1rem;
+}
+
 .modal-label {
 	display: flex;
 	align-items: center;
@@ -70,21 +71,6 @@
 	margin: 0;
 }
 
-.save-btn {
-	padding: 0.5rem 1rem;
-	border-radius: 1rem;
-}
-
-.save-btn:focus {
-	outline-width: 2px;
-	outline-style: solid;
-	outline-offset: 3px;
-}
-
-.save-btn:active {
-	transform: scale(0.99);
-}
-
 [data-theme="light"] {
 	.modal-dialog {
 		background-color: var(--white);
@@ -92,23 +78,6 @@
 
 	h5.modal-title {
 		color: var(--text);
-	}
-
-	.save-btn {
-		background-color: var(--primary);
-		color: var(--white);
-	}
-
-	.save-btn:hover {
-		background-color: var(--primary-shade-100);
-	}
-
-	.save-btn:focus {
-		outline-color: var(--primary-tint-200);
-	}
-
-	.save-btn:active {
-		background-color: var(--primary-shade-200);
 	}
 }
 
@@ -119,22 +88,5 @@
 
 	h5.modal-title {
 		color: var(--text);
-	}
-
-	.save-btn {
-		background-color: var(--primary);
-		color: var(--white);
-	}
-
-	.save-btn:hover {
-		background-color: var(--primary-shade-100);
-	}
-
-	.save-btn:focus {
-		outline-color: var(--primary-tint-200);
-	}
-
-	.save-btn:active {
-		background-color: var(--primary-shade-200);
 	}
 }
