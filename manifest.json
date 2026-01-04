@@ -1,4 +1,16 @@
 {
+	"name": "Billio",
+	"short_name": "Billio",
+	"start_url": "/billio/",
+	"scope": "/billio/",
+	"description": "An easy to use bill splitter",
+	"id": "billio_za",
+	"prefer_related_applications": false,
+	"categories": ["utilities"],
+	"orientation": "portrait",
+	"display": "standalone",
+	"dir": "ltr",
+	"lang": "en-ZA",
 	"theme_color": "#0004e0",
 	"background_color": "#FFFFFF",
 	"icons": [
@@ -15,14 +27,66 @@
 			"type": "image/png"
 		}
 	],
-	"orientation": "portrait",
-	"display": "standalone",
-	"dir": "left",
-	"lang": "en-ZA",
-	"name": "Billio",
-	"short_name": "Billio",
-	"start_url": "/billio/",
-	"scope": "/billio/",
-	"description": "An easy to use bill splitter",
-	"id": "billio_za"
+	"screenshots": [
+		{
+			"src": "assets/screenshots/screenshots_1.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_2.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_3.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_4.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_5.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_6.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_7.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_8.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_9.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "assets/screenshots/screenshots_10.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		}
+	]
 }
