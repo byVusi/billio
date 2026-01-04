@@ -1,5 +1,5 @@
 const STORAGE_NAME = "billio-config";
-const CONFIG_URL = `/assets/json/config.json`;
+const CONFIG_URL = `/billio/assets/json/config.json`;
 
 function readLocalStorage() {
 	const raw = localStorage.getItem(STORAGE_NAME);
