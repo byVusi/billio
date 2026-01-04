@@ -1,89 +1,28 @@
 {
-	"name": "Billio",
-	"short_name": "Billio",
-	"description": "Billio - An easy to use bill splitter",
-	"scope": "/billio/",
-	"start_url": "/billio/",
-	"dir": "ltr",
-	"lang": "en-ZA",
-	"prefer_related_applications": false,
-	"categories": ["utilities"],
-	"orientation": "portrait",
-	"display": "standalone",
-	"background_color": "#ffffff",
 	"theme_color": "#0004e0",
+	"background_color": "#FFFFFF",
 	"icons": [
 		{
-			"src": "assets/icons/icon-192x192.png",
-			"type": "image/png",
-			"sizes": "192x192"
+			"purpose": "maskable",
+			"sizes": "512x512",
+			"src": "icon512_maskable.png",
+			"type": "image/png"
 		},
 		{
-			"src": "assets/icons/icon-512x512.png",
-			"type": "image/png",
-			"sizes": "512x512"
+			"purpose": "any",
+			"sizes": "512x512",
+			"src": "icon512_rounded.png",
+			"type": "image/png"
 		}
 	],
-	"screenshots": [
-		{
-			"src": "assets/screenshots/screenshots_1.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_2.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_3.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_4.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_5.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_6.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_7.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_8.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_9.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "assets/screenshots/screenshots_10.png",
-			"sizes": "720x1280",
-			"type": "image/png",
-			"form_factor": "narrow"
-		}
-	]
+	"orientation": "portrait",
+	"display": "standalone",
+	"dir": "left",
+	"lang": "en-ZA",
+	"name": "Billio",
+	"short_name": "Billio",
+	"start_url": "/billio/",
+	"scope": "/billio/",
+	"description": "An easy to use bill splitter",
+	"id": "billio_za"
 }
