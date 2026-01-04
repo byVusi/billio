@@ -12,6 +12,7 @@ const CACHE_NAME = `${REPO_NAME}-cache-v1`;
  * @constant {string[]}
  */
 const FILES_TO_CACHE = [
+	"/",
 	`${BASE_PATH}/index.html`,
 	`${BASE_PATH}/main.css`,
 	`${BASE_PATH}/main.js`,
