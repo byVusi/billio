@@ -12,7 +12,7 @@ const CACHE_NAME = `${REPO_NAME}-cache-v1`;
  * @constant {string[]}
  */
 const FILES_TO_CACHE = [
-	"/",
+	`${BASE_PATH}/`,
 	`${BASE_PATH}/index.html`,
 	`${BASE_PATH}/main.css`,
 	`${BASE_PATH}/main.js`,
@@ -35,26 +35,9 @@ const FILES_TO_CACHE = [
  *
  * @param {ExtendableEvent} event - The install event.
  */
-self.addEventListener("install", function (event) {
+self.addEventListener("install", (event) => {
 	event.waitUntil(
-		caches.open(CACHE_NAME).then(function (cache) {
-			return Promise.all(
-				FILES_TO_CACHE.map(function (file) {
-					return fetch(file).then(function (response) {
-						if (!response.ok) {
-							throw new Error(
-								"Request failed for: " +
-									file +
-									" (" +
-									response.status +
-									")"
-							);
-						}
-						return cache.put(file, response.clone());
-					});
-				})
-			);
-		})
+		caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
 	);
 	self.skipWaiting();
 });
