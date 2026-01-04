@@ -143,19 +143,7 @@
 				</section>
 			</main>
 		</div>
-		<script>
-			const REPO_NAME = "billio";
-			const BASE_PATH = `/${REPO_NAME}`;
-
-			if ("serviceWorker" in navigator) {
-				navigator.serviceWorker
-					.register(`${BASE_PATH}/sw.js`)
-					.then(() => console.log("✅ Service Worker registered"))
-					.catch((err) =>
-						console.error("❌ Service Worker failed:", err)
-					);
-			}
-		</script>
+		<script src="sw.js"></script>
 		<script type="module" src="main.js"></script>
 	</body>
 </html>
