@@ -26,7 +26,6 @@ const FILES_TO_CACHE = [
 	`${BASE_PATH}/assets/js/modules/render.js`,
 	`${BASE_PATH}/assets/js/modules/storage.js`,
 	`${BASE_PATH}/assets/js/modules/utilities.js`,
-	`${BASE_PATH}/assets/json/config.json`,
 ];
 
 /**
