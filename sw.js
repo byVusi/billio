@@ -1,76 +1,137 @@
 /**
- * @fileoverview Basic service worker script for offline support.
- * Caches specified assets during installation, removes old caches on activation,
- * and serves cached assets when offline.
+ * Billio Service Worker
+ * - GitHub Pages safe
+ * - App-shell style
+ * - No Workbox
  */
+
 const REPO_NAME = "billio";
 const BASE_PATH = `/${REPO_NAME}`;
-const CACHE_NAME = `${REPO_NAME}-cache-v1.0`;
+
+const CACHE_VERSION = "v2";
+const APP_SHELL_CACHE = `billio-app-shell-${CACHE_VERSION}`;
+const RUNTIME_CACHE = `billio-runtime-${CACHE_VERSION}`;
 
 /**
- * List of static assets to cache during the install event.
- * @constant {string[]}
+ * Core app shell files
+ * These MUST exist or install will fail
  */
-const FILES_TO_CACHE = [
+const APP_SHELL_FILES = [
 	`${BASE_PATH}/`,
 	`${BASE_PATH}/index.html`,
 	`${BASE_PATH}/main.css`,
 	`${BASE_PATH}/main.js`,
-	`${BASE_PATH}/assets/css/components/modal.css`,
-	`${BASE_PATH}/assets/css/colors.css`,
-	`${BASE_PATH}/assets/css/interface.css`,
-	`${BASE_PATH}/assets/fonts/Nunito-VariableFont_wghtt.ttf`,
-	`${BASE_PATH}/assets/js/app.js`,
-	`${BASE_PATH}/assets/js/theme.js`,
-	`${BASE_PATH}/assets/js/modules/build.js`,
-	`${BASE_PATH}/assets/js/modules/eventHandlers.js`,
-	`${BASE_PATH}/assets/js/modules/render.js`,
-	`${BASE_PATH}/assets/js/modules/storage.js`,
-	`${BASE_PATH}/assets/js/modules/utilities.js`,
+	`${BASE_PATH}/offline.html`,
 ];
 
-/**
- * Install event handler.
- * Caches all files listed in FILES_TO_CACHE.
- *
- * @param {ExtendableEvent} event - The install event.
- */
+/* =========================
+   INSTALL
+========================= */
 self.addEventListener("install", (event) => {
 	event.waitUntil(
-		caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
+		caches.open(APP_SHELL_CACHE).then((cache) => {
+			return cache.addAll(APP_SHELL_FILES);
+		})
 	);
 	self.skipWaiting();
 });
 
-/**
- * Activate event handler.
- * Removes old caches that don’t match the current CACHE_NAME.
- *
- * @param {ExtendableEvent} event - The activate event.
- */
-self.addEventListener("activate", function (event) {
+/* =========================
+   ACTIVATE
+========================= */
+self.addEventListener("activate", (event) => {
 	event.waitUntil(
-		caches.keys().then(function (keys) {
-			return Promise.all(
+		caches.keys().then((keys) =>
+			Promise.all(
 				keys
-					.filter((key) => key !== CACHE_NAME)
+					.filter(
+						(key) =>
+							key !== APP_SHELL_CACHE &&
+							key !== RUNTIME_CACHE
+					)
 					.map((key) => caches.delete(key))
-			);
-		})
+			)
+		)
 	);
-	self.clients.claim(); // Takes control of uncontrolled clients as soon as it activates.
+	self.clients.claim();
 });
 
-/**
- * Fetch event handler.
- * Responds with cached resources when available, otherwise fetches from the network.
- *
- * @param {FetchEvent} event - The fetch event.
- */
-self.addEventListener("fetch", function (event) {
+/* =========================
+   FETCH
+========================= */
+self.addEventListener("fetch", (event) => {
+	const { request } = event;
+
+	// Only handle GET requests
+	if (request.method !== "GET") return;
+
+	const url = new URL(request.url);
+
+	// Ignore cross-origin requests
+	if (url.origin !== self.location.origin) return;
+
+	/* -------------------------
+	   1. HTML: Network-first
+	-------------------------- */
+	if (request.mode === "navigate") {
+		event.respondWith(
+			fetch(request)
+				.then((response) => {
+					const copy = response.clone();
+					caches.open(APP_SHELL_CACHE).then((cache) =>
+						cache.put(request, copy)
+					);
+					return response;
+				})
+				.catch(() =>
+					caches.match(`${BASE_PATH}/offline.html`)
+				)
+		);
+		return;
+	}
+
+	/* -------------------------
+	   2. Static assets: Cache-first
+	   (CSS, JS, fonts)
+	-------------------------- */
+	if (
+		request.destination === "style" ||
+		request.destination === "script" ||
+		request.destination === "font"
+	) {
+		event.respondWith(
+			caches.match(request).then((cached) => {
+				return (
+					cached ||
+					fetch(request).then((response) => {
+						const copy = response.clone();
+						caches.open(RUNTIME_CACHE).then((cache) =>
+							cache.put(request, copy)
+						);
+						return response;
+					})
+				);
+			})
+		);
+		return;
+	}
+
+	/* -------------------------
+	   3. Everything else: Stale-while-revalidate
+	-------------------------- */
 	event.respondWith(
-		caches.match(event.request).then(function (response) {
-			return response || fetch(event.request);
+		caches.match(request).then((cached) => {
+			const fetchPromise = fetch(request)
+				.then((response) => {
+					const copy = response.clone();
+					caches.open(RUNTIME_CACHE).then((cache) =>
+						cache.put(request, copy)
+					);
+					return response;
+				})
+				.catch(() => cached);
+
+			return cached || fetchPromise;
 		})
 	);
 });
