@@ -8,13 +8,13 @@
 	border-radius: 0.75rem;
 }
 
-#reset-btn:hover {
+#reset-btn:active {
 	color: var(--white);
 	background-color: var(--text);
 }
 
 [data-theme="dark"] {
-	#reset-btn:hover {
+	#reset-btn:active {
 		color: var(--white);
 		border-color: var(--white);
 	}
