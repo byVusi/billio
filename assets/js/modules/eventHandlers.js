@@ -181,12 +181,12 @@ function resetButtonClickHandler(e) {
 	const clickedItem = e.target.closest("#reset-btn");
 	if (!clickedItem) return;
 
-	bill.textContent = 0;
-	tip.textContent = 0.0;
-	rate.textContent = 10.0;
-	total.textContent = 0.0;
-	split.textContent = 0.0;
-	splitByValue.textContent = 1;
+	bill.textContent = "0";
+	tip.textContent = "0.00";
+	rate.textContent = "10.00";
+	total.textContent = "0.00";
+	split.textContent = "0.00";
+	splitByValue.textContent = "1";
 
 	const elements = document.querySelectorAll(".value");
 	for (const element of elements) {
