@@ -8,7 +8,7 @@
 const REPO_NAME = "billio";
 const BASE_PATH = `/${REPO_NAME}`;
 
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v1.0";
 const APP_SHELL_CACHE = `billio-app-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `billio-runtime-${CACHE_VERSION}`;
 
@@ -41,17 +41,18 @@ self.addEventListener("install", (event) => {
 ========================= */
 self.addEventListener("activate", (event) => {
 	event.waitUntil(
-		caches.keys().then((keys) =>
-			Promise.all(
-				keys
-					.filter(
-						(key) =>
-							key !== APP_SHELL_CACHE &&
-							key !== RUNTIME_CACHE
-					)
-					.map((key) => caches.delete(key))
+		caches
+			.keys()
+			.then((keys) =>
+				Promise.all(
+					keys
+						.filter(
+							(key) =>
+								key !== APP_SHELL_CACHE && key !== RUNTIME_CACHE
+						)
+						.map((key) => caches.delete(key))
+				)
 			)
-		)
 	);
 	self.clients.claim();
 });
@@ -78,14 +79,12 @@ self.addEventListener("fetch", (event) => {
 			fetch(request)
 				.then((response) => {
 					const copy = response.clone();
-					caches.open(APP_SHELL_CACHE).then((cache) =>
-						cache.put(request, copy)
-					);
+					caches
+						.open(APP_SHELL_CACHE)
+						.then((cache) => cache.put(request, copy));
 					return response;
 				})
-				.catch(() =>
-					caches.match(`${BASE_PATH}/offline.html`)
-				)
+				.catch(() => caches.match(`${BASE_PATH}/offline.html`))
 		);
 		return;
 	}
@@ -105,9 +104,9 @@ self.addEventListener("fetch", (event) => {
 					cached ||
 					fetch(request).then((response) => {
 						const copy = response.clone();
-						caches.open(RUNTIME_CACHE).then((cache) =>
-							cache.put(request, copy)
-						);
+						caches
+							.open(RUNTIME_CACHE)
+							.then((cache) => cache.put(request, copy));
 						return response;
 					})
 				);
@@ -124,9 +123,9 @@ self.addEventListener("fetch", (event) => {
 			const fetchPromise = fetch(request)
 				.then((response) => {
 					const copy = response.clone();
-					caches.open(RUNTIME_CACHE).then((cache) =>
-						cache.put(request, copy)
-					);
+					caches
+						.open(RUNTIME_CACHE)
+						.then((cache) => cache.put(request, copy));
 					return response;
 				})
 				.catch(() => cached);
