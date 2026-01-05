@@ -177,12 +177,31 @@ async function paletteClickHandler(e) {
 	setTheme();
 }
 
+function resetButtonClickHandler(e) {
+	const clickedItem = e.target.closest("#reset-btn");
+	if (!clickedItem) return;
+
+	bill.textContent = 0;
+	tip.textContent = 0.0;
+	rate.textContent = 10.0;
+	total.textContent = 0.0;
+	split.textContent = 0.0;
+	splitByValue.textContent = 1;
+
+	const elements = document.querySelectorAll(".value");
+	for (const element of elements) {
+		element.classList.remove("active");
+	}
+	bill.classList.add("active");
+}
+
 export const EVENT_HANDLERS = {
 	CLICK: {
 		BUTTONS: {
 			SETTINGS: settingsButtonClickHandler,
 			COUNTER: counterClickHandler,
 			NUMPAD_KEYS: numpadKeyClickHandler,
+			CLEAR: resetButtonClickHandler,
 		},
 		DATA: dataValueClickHandler,
 		MODAL: {

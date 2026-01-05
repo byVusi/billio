@@ -15,6 +15,7 @@ async function init() {
 	NAV.addEventListener("click", async (e) => {
 		const [theme, theme_palette] = await setTheme();
 		BUTTONS.SETTINGS(e, theme, theme_palette);
+		BUTTONS.CLEAR(e);
 	});
 
 	SPLIT_CONTAINER.addEventListener("click", (e) => {
