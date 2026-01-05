@@ -1,144 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>You're Offline</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Offline</title>
+		<style>
+			body {
+				margin: 0;
+				height: 100vh;
+				display: grid;
+				place-items: center;
+				font-family: system-ui, sans-serif;
+				font-size: 16px;
+				text-align: center;
+			}
 
-	<style>
-		:root {
-			--bg: #0f172a;           /* slate-900 */
-			--card: #111827;         /* gray-900 */
-			--text: #e5e7eb;         /* gray-200 */
-			--muted: #9ca3af;        /* gray-400 */
-			--accent: #3b82f6;       /* blue-500 */
-			--accent-soft: #1e40af;  /* blue-800 */
-		}
+			main {
+				padding: 1rem;
+			}
 
-		* {
-			box-sizing: border-box;
-		}
+			h1 {
+				font-size: 1.25rem;
+				margin: 1rem 0 0.5rem;
+			}
 
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
+			p {
+				margin: 0 0 1rem;
+				color: #67677e;
+			}
 
-		body {
-			font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-			background: radial-gradient(
-				1200px 600px at 50% -200px,
-				var(--accent-soft),
-				var(--bg)
-			);
-			color: var(--text);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 1.5rem;
-		}
+			button {
+				background: #0004e0;
+				color: white;
+				border: none;
+				border-radius: 0.5rem;
+				padding: 0.5rem 1rem;
+				font-size: 1rem;
+				cursor: pointer;
+			}
 
-		.container {
-			max-width: 420px;
-			width: 100%;
-			background: linear-gradient(180deg, #0b1220, var(--card));
-			border-radius: 16px;
-			padding: 2rem 1.75rem;
-			box-shadow:
-				0 20px 40px rgba(0, 0, 0, 0.4),
-				inset 0 1px 0 rgba(255, 255, 255, 0.04);
-			text-align: center;
-		}
+			button:hover {
+				background-color: #0006c2;
+			}
 
-		.icon {
-			width: 64px;
-			height: 64px;
-			margin: 0 auto 1rem;
-			border-radius: 50%;
-			background: rgba(59, 130, 246, 0.15);
-			display: grid;
-			place-items: center;
-			color: var(--accent);
-			font-size: 28px;
-		}
+			button:active {
+				background-color: #0005a3;
+				transform: translateY(1px);
+			}
 
-		h1 {
-			font-size: 1.25rem;
-			margin: 0.5rem 0;
-			font-weight: 600;
-			letter-spacing: 0.2px;
-		}
-
-		p {
-			margin: 0.75rem 0 1.5rem;
-			color: var(--muted);
-			line-height: 1.5;
-			font-size: 0.95rem;
-		}
-
-		.actions {
-			display: flex;
-			gap: 0.75rem;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
-
-		button {
-			appearance: none;
-			border: none;
-			border-radius: 10px;
-			padding: 0.65rem 1.1rem;
-			font-size: 0.9rem;
-			font-weight: 500;
-			cursor: pointer;
-			color: white;
-			background: linear-gradient(
-				180deg,
-				var(--accent),
-				#2563eb
-			);
-			box-shadow:
-				0 8px 20px rgba(59, 130, 246, 0.35),
-				inset 0 1px 0 rgba(255, 255, 255, 0.25);
-		}
-
-		button.secondary {
-			background: transparent;
-			color: var(--text);
-			box-shadow: none;
-			border: 1px solid rgba(255, 255, 255, 0.15);
-		}
-
-		button:active {
-			transform: translateY(1px);
-		}
-
-		footer {
-			margin-top: 1.5rem;
-			font-size: 0.75rem;
-			color: #6b7280;
-		}
-	</style>
-</head>
-<body>
-	<main class="container">
-		<div class="icon">📡</div>
-
-		<h1>You’re offline</h1>
-
-		<p>
-			It looks like you don’t have an internet connection right now.
-			Some features may be unavailable until you’re back online.
-		</p>
-
-		<div class="actions">
+			span {
+				font-size: 3rem;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<span>📡</span>
+			<h1>You're Offline</h1>
+			<p>No internet connection.</p>
 			<button onclick="location.reload()">Retry</button>
-			<button class="secondary" onclick="history.back()">Go back</button>
-		</div>
-
-		<footer>
-			This app works best with an active connection.
-		</footer>
-	</main>
-</body>
+		</main>
+	</body>
 </html>
