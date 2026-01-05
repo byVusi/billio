@@ -4,7 +4,7 @@
 	font-weight: 600;
 	background-color: transparent;
 	color: var(--text);
-	border: 2px solid var(--text);
+	border: 1.5px solid var(--text);
 	border-radius: 0.75rem;
 }
 
