@@ -8,7 +8,7 @@
 const REPO_NAME = "billio";
 const BASE_PATH = `/${REPO_NAME}`;
 
-const CACHE_VERSION = "v1.0";
+const CACHE_VERSION = "v1";
 const APP_SHELL_CACHE = `billio-app-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `billio-runtime-${CACHE_VERSION}`;
 
