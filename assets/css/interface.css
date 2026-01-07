@@ -10,7 +10,7 @@
 
 #reset-btn:active {
 	color: var(--white);
-	background-color: var(--text);
+	background-color: var(--surface-active);
 }
 
 [data-theme="dark"] {
@@ -153,7 +153,8 @@ p.value {
 }
 
 .numpad-key:focus,
-.numpad-key:active {
+.numpad-key:active,
+.numpad-key.active {
 	background-color: var(--surface-active);
 }
 
