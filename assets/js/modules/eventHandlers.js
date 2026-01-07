@@ -66,6 +66,27 @@ function counterClickHandler(e) {
 	split.textContent = UTILITIES.DISPLAY.FORMAT(calcResult);
 }
 
+function numpadKeyPointerdownHandler(e) {
+	const clickedItem = e.target.closest(".numpad-key");
+	if (!clickedItem) return;
+
+	clickedItem.classList.add("active");
+}
+
+function numpadKeyPointerupHandler(e) {
+	const clickedItem = e.target.closest(".numpad-key");
+	if (!clickedItem) return;
+
+	clickedItem.classList.remove("active");
+}
+
+function numpadKeyPointercancelHandler(e) {
+	const clickedItem = e.target.closest(".numpad-key");
+	if (!clickedItem) return;
+
+	clickedItem.classList.remove("active");
+}
+
 function numpadKeyClickHandler(e) {
 	const clickedItem = e.target.closest(".numpad-key");
 	if (!clickedItem) return;
@@ -209,5 +230,10 @@ export const EVENT_HANDLERS = {
 			THEME: themeClickHandler,
 			PALETTE: paletteClickHandler,
 		},
+	},
+	POINTER: {
+		START: numpadKeyPointerdownHandler,
+		END: numpadKeyPointerupHandler,
+		CANCEL: numpadKeyPointercancelHandler,
 	},
 };
