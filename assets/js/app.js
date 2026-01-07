@@ -29,6 +29,19 @@ async function init() {
 	DATA_CONTAINER.addEventListener("click", (e) => {
 		EVENT_HANDLERS.CLICK.DATA(e, DATA_CONTAINER);
 	});
+
+	//Add initial event listeners to pointer items
+	NUMPAD.addEventListener("pointerdown", (e) => {
+		EVENT_HANDLERS.POINTER.START(e);
+	});
+
+	NUMPAD.addEventListener("pointerup", (e) => {
+		EVENT_HANDLERS.POINTER.END(e);
+	});
+
+	NUMPAD.addEventListener("pointercancel", (e) => {
+		EVENT_HANDLERS.POINTER.CANCEL(e);
+	});
 }
 
 export const APP = {
